@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Foto pronte per vendere – Servizio di miglioramento automatico</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f5f5f5;
+      --text: #111111;
+      --muted: #666666;
+      --primary: #0066ff;
+      --border: #e5e5e5;
+      --radius: 10px;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #0052cc;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-soft);
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      padding: 40px 0 32px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-cta-note {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* PRIMA/DOPO PRINCIPALE */
+
+    .section {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .before-after-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .ba-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 12px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ba-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .ba-image {
+      border-radius: 8px;
+      background: var(--bg-soft);
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .ba-caption {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ESEMPI IBRIDI */
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .example-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 12px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .example-image {
+      border-radius: 8px;
+      background: var(--bg-soft);
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .example-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .example-text {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* COME FUNZIONA */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .step-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 16px;
+      background: #ffffff;
+      font-size: 14px;
+    }
+
+    .step-number {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .step-text {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* PERCHE FUNZIONA */
+
+    .bullets {
+      max-width: 640px;
+      margin: 16px auto 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .bullets ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .bullets li {
+      margin-bottom: 6px;
+    }
+
+    .bullets li::before {
+      content: "• ";
+      color: var(--text);
+    }
+
+    /* PREZZI */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .price-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 16px;
+      background: #ffffff;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .price-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .price-main {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      padding-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .before-after-main {
+        grid-template-columns: 1fr;
+      }
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">FOTO PRONTE PER VENDERE</div>
+      <nav class="nav-links">
+        <a href="#come-funziona">Come funziona</a>
+        <a href="#prezzi">Prezzi</a>
+        <a href="#login">Login</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-title">Le tue foto diventano professionali in pochi secondi.</h1>
+      <p class="hero-subtitle">
+        Trasforma una foto scattata col telefono in un’immagine pronta per vendere.
+        Niente fotografi, niente attese, niente complicazioni.
+      </p>
+      <button class="btn btn-primary">
+        Prova gratis
+      </button>
+      <div class="hero-cta-note">
+        Carica una foto. La miglioriamo noi.
+      </div>
+    </section>
+
+    <!-- PRIMA/DOPO PRINCIPALE (CIBO SEMPLICE) -->
+    <section class="section" aria-label="Esempio prima e dopo">
+      <h2 class="section-title">Da foto normale a risultato professionale.</h2>
+      <p class="section-subtitle">
+        Un piatto semplice, fotografato al volo. Prima e dopo il nostro miglioramento automatico.
+      </p>
+
+      <div class="before-after-main">
+        <div class="ba-card">
+          <div class="ba-label">Prima</div>
+          <div class="ba-image">
+            <!-- Qui inserirai l'immagine reale -->
+            Foto di un piatto di pasta, luce gialla, colori spenti.
+          </div>
+          <div class="ba-caption">
+            Scatto veloce con lo smartphone, luce non ottimale, poco adatto a menù e social.
+          </div>
+        </div>
+        <div class="ba-card">
+          <div class="ba-label">Dopo</div>
+          <div class="ba-image">
+            <!-- Qui inserirai l'immagine migliorata -->
+            Stesso piatto, luce bilanciata, colori vivi, dettagli nitidi.
+          </div>
+          <div class="ba-caption">
+            Immagine pronta per menù, delivery, social e campagne promozionali.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESEMPI IBRIDI -->
+    <section class="section" aria-label="Altri esempi di trasformazione">
+      <h2 class="section-title">Funziona con qualsiasi tipo di contenuto.</h2>
+      <p class="section-subtitle">
+        Non solo cibo: miglioriamo anche prodotti, oggetti di design e contenuti lifestyle.
+      </p>
+
+      <div class="examples-grid">
+        <div class="example-card">
+          <div class="example-image">
+            Prodotto scenografico (cosmetico, accessorio, oggetto di design).
+          </div>
+          <div class="example-title">Prodotti e oggetti</div>
+          <div class="example-text">
+            Perfetto per e‑commerce, artigiani, negozi fisici che vogliono foto più curate senza un set fotografico.
+          </div>
+        </div>
+        <div class="example-card">
+          <div class="example-image">
+            Contenuto lifestyle (mani, dettagli umani, ambienti).
+          </div>
+          <div class="example-title">Contenuti emozionali</div>
+          <div class="example-text">
+            Ideale per social, brand personali, studi creativi e chi comunica attraverso immagini di atmosfera.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COME FUNZIONA -->
+    <section class="section" id="come-funziona" aria-label="Come funziona il servizio">
+      <h2 class="section-title">Come funziona.</h2>
+      <p class="section-subtitle">
+        Un flusso semplice, pensato per farti risparmiare tempo e ottenere subito un risultato migliore.
+      </p>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-number">Passo 1</div>
+          <div class="step-title">Carica una foto</div>
+          <div class="step-text">
+            Scegli una foto scattata con il tuo smartphone. Non deve essere perfetta: ci pensiamo noi.
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">Passo 2</div>
+          <div class="step-title">La miglioriamo automaticamente</div>
+          <div class="step-text">
+            Applichiamo miglioramento di luce, colori, nitidezza e qualità generale, in pochi secondi.
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">Passo 3</div>
+          <div class="step-title">Ricevi la foto via email</div>
+          <div class="step-text">
+            Scarichi la versione ottimizzata, pronta per menù, social, e‑commerce o promozioni.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERCHE FUNZIONA -->
+    <section class="section" aria-label="Perché questo servizio è utile">
+      <h2 class="section-title">Perché funziona davvero.</h2>
+      <p class="section-subtitle">
+        Non vendiamo tecnologia: risolviamo un problema concreto per chi deve mostrare e vendere i propri prodotti.
+      </p>
+
+      <div class="bullets">
+        <ul>
+          <li>Le foto fatte al volo spesso non bastano per convincere un cliente.</li>
+          <li>Organizzare un servizio fotografico richiede tempo, budget e pianificazione.</li>
+          <li>Con una sola foto migliorata puoi aggiornare menù, social e schede prodotto.</li>
+          <li>È ideale per ristoranti, bar, pizzerie, negozi, artigiani, creator e piccoli brand.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PREZZI -->
+    <section class="section" id="prezzi" aria-label="Prezzi del servizio">
+      <h2 class="section-title">Prezzi semplici, senza sorprese.</h2>
+      <p class="section-subtitle">
+        Parti da una foto gratuita. Se il risultato ti piace, scegli il pacchetto più adatto a te.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-label">Inizia da qui</div>
+          <div class="price-main">1 foto gratis</div>
+          <div class="price-note">
+            Nessuna carta di credito richiesta. Solo per vedere la trasformazione.
+          </div>
+          <button class="btn btn-outline">Prova subito</button>
+        </div>
+        <div class="price-card">
+          <div class="price-label">Per iniziare</div>
+          <div class="price-main">10 foto</div>
+          <div class="price-note">
+            Ideale per aggiornare menù, profili social o una piccola selezione di prodotti.
+          </div>
+          <button class="btn btn-outline">Sblocca 10 foto</button>
+        </div>
+        <div class="price-card">
+          <div class="price-label">Per chi crea spesso</div>
+          <div class="price-main">50 foto</div>
+          <div class="price-note">
+            Perfetto per ristoranti, e‑commerce, studi creativi e chi pubblica contenuti ogni giorno.
+          </div>
+          <button class="btn btn-outline">Sblocca 50 foto</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <!-- ANNO --> 2026 · Foto pronte per vendere</div>
+      <div id="login">
+        <a href="#">Login</a> ·
+        <a href="#">Privacy</a> ·
+        <a href="#">Contatti</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
